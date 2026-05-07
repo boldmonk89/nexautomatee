@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Play, ArrowRight, Star, Lock, CheckCircle2, Infinity as InfinityIcon } from "lucide-react";
 import { GridBackground } from "./GridBackground";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -13,25 +14,26 @@ export function Hero() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            video.muted = false;
-            video.volume = 1;
-            video.play().catch(() => {
-              // Fallback if play() fails with sound
-              video.muted = true;
-              video.play();
-            });
+            video.play().catch(() => {});
           } else {
-            video.volume = 0;
-            video.muted = true;
+            video.pause();
           }
         });
       },
-      { threshold: 0 } 
+      { threshold: 0.1 }
     );
 
     observer.observe(video);
     return () => observer.disconnect();
   }, []);
+
+  const toggleSound = () => {
+    if (videoRef.current) {
+      const newMuted = !videoRef.current.muted;
+      videoRef.current.muted = newMuted;
+      setIsMuted(newMuted);
+    }
+  };
 
   return (
     <section id="top" className="relative overflow-hidden">
@@ -82,16 +84,28 @@ export function Hero() {
             <video 
               ref={videoRef}
               autoPlay 
-              muted
+              muted={isMuted}
               loop 
               playsInline
               className="absolute inset-0 h-full w-full object-cover"
-              style={{ pointerEvents: "none" }} // Prevents interaction/seeking
             >
               <source src="/digivideo.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+            
+            {/* Sound Toggle Button */}
+            <button 
+              onClick={toggleSound}
+              className="absolute bottom-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-all hover:bg-black/70"
+            >
+              {isMuted ? (
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+              )}
+            </button>
+
+            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
           </div>
         </div>
       </div>
