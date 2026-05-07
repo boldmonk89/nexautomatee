@@ -54,21 +54,22 @@ export function Hero() {
             className="relative w-full overflow-hidden rounded-[20px] border"
             style={{
               aspectRatio: "16 / 9",
-              background: "#F3F4F6",
+              background: "#000",
               boxShadow: "var(--shadow-video)",
               borderColor: "var(--border)",
             }}
           >
-            <div className="absolute inset-0 grid-bg opacity-60" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-              <div
-                className="pulse-ring flex h-20 w-20 items-center justify-center rounded-full"
-                style={{ background: "#0A0A0A" }}
-              >
-                <Play size={28} className="fill-white text-white" style={{ marginLeft: 3 }} />
-              </div>
-              <p className="text-sm font-medium text-muted-foreground">Product Demo Coming Soon</p>
-            </div>
+            <video 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/digivideo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="absolute inset-0 bg-black/20" />
           </div>
         </div>
       </div>
