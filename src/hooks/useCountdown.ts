@@ -6,23 +6,34 @@ export function useCountdown() {
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
-    const updateTimer = () => {
-      let targetTime = localStorage.getItem("countdown_target");
-      const now = Math.floor(Date.now() / 1000);
+    // 1. Get or Initialize Target Time
+    let target = localStorage.getItem("countdown_target");
+    const now = Math.floor(Date.now() / 1000);
 
-      if (!targetTime || parseInt(targetTime, 10) <= now) {
-        targetTime = (now + INITIAL_SECONDS).toString();
-        localStorage.setItem("countdown_target", targetTime);
+    if (!target) {
+      target = (now + INITIAL_SECONDS).toString();
+      localStorage.setItem("countdown_target", target);
+    }
+
+    const update = () => {
+      const currentNow = Math.floor(Date.now() / 1000);
+      const targetVal = parseInt(localStorage.getItem("countdown_target") || "0", 10);
+      
+      let diff = targetVal - currentNow;
+
+      if (diff <= 0) {
+        // Reset if reached zero
+        const newTarget = (currentNow + INITIAL_SECONDS).toString();
+        localStorage.setItem("countdown_target", newTarget);
+        diff = INITIAL_SECONDS;
       }
 
-      const remaining = Math.max(0, parseInt(targetTime, 10) - now);
-      setSeconds(remaining);
+      setSeconds(diff);
     };
 
-    updateTimer();
-    const timer = setInterval(updateTimer, 1000);
-
-    return () => clearInterval(timer);
+    update();
+    const interval = setInterval(update, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return seconds;

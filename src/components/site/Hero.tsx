@@ -5,35 +5,65 @@ import { CountdownTimer } from "./CountdownTimer";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
+    // 1. Intersection Observer to Play/Pause
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            video.play().catch(() => {});
+            video.play().catch(() => {
+              // Fallback for browsers that block play
+              console.log("Play blocked, waiting for interaction");
+            });
           } else {
             video.pause();
           }
         });
       },
-      { threshold: 0.01 }
+      { threshold: 0.1 }
     );
 
     observer.observe(video);
-    return () => observer.disconnect();
+
+    // 2. Global listener to unmute as soon as user touches/clicks/scrolls
+    const unmute = () => {
+      if (videoRef.current) {
+        videoRef.current.muted = false;
+        videoRef.current.volume = 1;
+        setIsMuted(false);
+      }
+      // Clean up listeners
+      window.removeEventListener("click", unmute);
+      window.removeEventListener("touchstart", unmute);
+      window.removeEventListener("scroll", unmute);
+      window.removeEventListener("keydown", unmute);
+    };
+
+    window.addEventListener("click", unmute);
+    window.addEventListener("touchstart", unmute);
+    window.addEventListener("scroll", unmute); // Some mobile browsers allow this
+    window.addEventListener("keydown", unmute);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("click", unmute);
+      window.removeEventListener("touchstart", unmute);
+      window.removeEventListener("scroll", unmute);
+      window.removeEventListener("keydown", unmute);
+    };
   }, []);
 
-  const handleUnmute = () => {
+  const handleManualUnmute = () => {
     if (videoRef.current) {
       videoRef.current.muted = false;
       videoRef.current.volume = 1;
       videoRef.current.play();
-      setHasInteracted(true);
+      setIsMuted(false);
     }
   };
 
@@ -80,7 +110,7 @@ export function Hero() {
         <div className="relative mx-auto mt-16 w-full max-w-[900px]">
           <div
             className="relative w-full overflow-hidden rounded-[20px] border group cursor-pointer"
-            onClick={handleUnmute}
+            onClick={handleManualUnmute}
             style={{
               aspectRatio: "16 / 9",
               background: "#000",
@@ -91,7 +121,7 @@ export function Hero() {
             <video 
               ref={videoRef}
               autoPlay 
-              muted={!hasInteracted}
+              muted={isMuted}
               loop 
               playsInline
               className="absolute inset-0 h-full w-full object-cover"
@@ -100,13 +130,13 @@ export function Hero() {
               Your browser does not support the video tag.
             </video>
             
-            {!hasInteracted && (
-              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm transition-all group-hover:bg-black/30">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white text-black shadow-2xl animate-bounce">
-                  <Play size={32} fill="black" />
+            {isMuted && (
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/20 backdrop-blur-[2px] transition-all group-hover:bg-black/30">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-black shadow-2xl animate-pulse">
+                  <Play size={24} fill="black" />
                 </div>
-                <p className="mt-6 text-xl font-black uppercase tracking-widest text-white drop-shadow-lg">
-                  Click to Unmute & Play
+                <p className="mt-4 text-sm font-bold uppercase tracking-widest text-white drop-shadow-md">
+                  Tap for sound
                 </p>
               </div>
             )}
