@@ -183,7 +183,7 @@ function BundlePage() {
                 <div className="w-full md:w-1/2">
                    <Reveal>
                       <span className="text-blue-500 font-bold tracking-widest uppercase text-sm">Exclusive Gifts</span>
-                      <h2 className="mt-4 text-4xl md:text-6xl font-black tracking-tight">FREE BONUSES <br/>INCLUDED!</h2>
+                      <h2 className="mt-4 text-4xl md:text-6xl font-black tracking-tight">PREMIUM BONUSES <br/>INCLUDED!</h2>
                       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                          <BonusItem label="Viral Hook Collection" />
                          <BonusItem label="Caption Templates" />
@@ -194,11 +194,16 @@ function BundlePage() {
                    </Reveal>
                 </div>
                 <div className="w-full md:w-1/2">
-                   <div className="relative aspect-square rounded-3xl bg-gradient-to-br from-blue-600/20 to-transparent border border-white/10 flex items-center justify-center overflow-hidden">
-                      <div className="text-center p-12">
-                         <Package size={80} className="mx-auto text-blue-500 mb-6" />
-                         <h3 className="text-3xl font-black">Limited Bonus Pack</h3>
-                         <p className="mt-2 text-gray-400">Worth ₹4,999 — Included for FREE today.</p>
+                   <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-blue-600/20 to-transparent">
+                      <img 
+                        src="/assets/bundle_pack.jpg" 
+                        alt="Premium Bundle Pack"
+                        className="w-full h-full object-contain"
+                      />
+                      <div className="absolute inset-0 bg-black/20" />
+                      <div className="absolute bottom-6 left-6 right-6 p-4 bg-black/60 backdrop-blur-md rounded-xl border border-white/10">
+                         <h3 className="text-xl font-black">Mega Bonus Pack</h3>
+                         <p className="text-sm text-gray-300">Worth ₹4,999 — Included in your bundle.</p>
                       </div>
                    </div>
                 </div>
