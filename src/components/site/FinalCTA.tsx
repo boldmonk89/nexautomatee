@@ -1,5 +1,6 @@
 import { RazorpayButton } from "./RazorpayButton";
 import { Reveal } from "./Reveal";
+import { CountdownTimer } from "./CountdownTimer";
 
 export function FinalCTA() {
   return (
@@ -32,11 +33,15 @@ export function FinalCTA() {
           <p className="mx-auto mt-6 max-w-xl text-[16px] md:text-[18px]" style={{ color: "#9CA3AF" }}>
             Get instant lifetime access to all our premium n8n templates for a one-time payment of just ₹299.
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-col items-center gap-10">
             <RazorpayButton
-              className="btn-invert !px-10 !py-4 text-lg"
+              className="btn-invert !px-12 !py-5 text-xl shadow-[0_0_40px_rgba(37,99,235,0.3)]"
               label="Get Access — ₹299"
             />
+            
+            <div className="scale-110">
+              <CountdownTimer />
+            </div>
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm" style={{ color: "#9CA3AF" }}>
             <span>✓ Instant Digital Delivery</span>

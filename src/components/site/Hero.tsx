@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Play, ArrowRight, Star, Lock, CheckCircle2, Infinity as InfinityIcon } from "lucide-react";
 import { GridBackground } from "./GridBackground";
+import { CountdownTimer } from "./CountdownTimer";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMuted, setIsMuted] = useState(true);
-
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -14,28 +13,38 @@ export function Hero() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            video.play().catch(() => {});
+            video.muted = false;
+            video.volume = 1;
+            video.play().catch(() => {
+              // Browser may still block sound if no interaction occurred
+              video.muted = true;
+              video.play();
+            });
           } else {
             video.pause();
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.01 } // Trigger as soon as any part is visible
     );
 
     observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
 
-  const toggleSound = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (videoRef.current) {
-      const isCurrentlyMuted = videoRef.current.muted;
-      videoRef.current.muted = !isCurrentlyMuted;
-      videoRef.current.volume = 1;
-      setIsMuted(!isCurrentlyMuted);
-    }
-  };
+    // Also unmute on first click anywhere on the page to satisfy browser rules
+    const handleFirstInteraction = () => {
+      if (videoRef.current) {
+        videoRef.current.muted = false;
+        videoRef.current.volume = 1;
+      }
+      window.removeEventListener("click", handleFirstInteraction);
+    };
+    window.addEventListener("click", handleFirstInteraction);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("click", handleFirstInteraction);
+    };
+  }, []);
 
   return (
     <section id="top" className="relative overflow-hidden">
@@ -61,10 +70,14 @@ export function Hero() {
             Scale your operations with plug-and-play n8n templates. 
             No coding, no complexity, just pure automation systems built for business.
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-col items-center gap-8">
             <a href="#cta" className="btn-primary">
               Get Access <ArrowRight size={16} />
             </a>
+            
+            <div className="scale-90 opacity-90">
+              <CountdownTimer />
+            </div>
           </div>
           <p className="mt-8 text-sm font-medium text-muted-foreground flex items-center justify-center gap-2">
             <CheckCircle2 size={14} className="text-green-500" />
@@ -86,7 +99,7 @@ export function Hero() {
             <video 
               ref={videoRef}
               autoPlay 
-              muted={isMuted}
+              muted
               loop 
               playsInline
               className="absolute inset-0 h-full w-full object-cover"
@@ -95,23 +108,7 @@ export function Hero() {
               Your browser does not support the video tag.
             </video>
             
-            {/* Sound Toggle Button */}
-            <button 
-              onClick={toggleSound}
-              className="absolute bottom-6 right-6 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all hover:bg-black/80 border border-white/10 shadow-lg"
-            >
-              {isMuted ? (
-                <div className="flex items-center gap-2 px-4 whitespace-nowrap absolute right-14 bg-black/60 py-2 rounded-lg border border-white/10 animate-in fade-in slide-in-from-right-2">
-                  <span className="text-[12px] font-bold uppercase tracking-widest">Tap for sound</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-                </div>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-              )}
-              {isMuted && <div className="sr-only">Unmute</div>}
-            </button>
-
-            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+            <div className="absolute inset-0 bg-black/5 pointer-events-none" />
           </div>
         </div>
       </div>

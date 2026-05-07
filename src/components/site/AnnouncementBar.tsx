@@ -1,41 +1,7 @@
-import { useEffect, useState } from "react";
-import { Clock } from "lucide-react";
-
-const INITIAL_SECONDS = 600; // 10 minutes
+import { useCountdown } from "@/hooks/useCountdown";
 
 export function AnnouncementBar() {
-  const [seconds, setSeconds] = useState(INITIAL_SECONDS);
-
-  useEffect(() => {
-    // Check if we have a target time in localStorage
-    let targetTime = localStorage.getItem("countdown_target");
-    
-    if (!targetTime) {
-      // Set target to 10 minutes from now
-      const now = Math.floor(Date.now() / 1000);
-      targetTime = (now + INITIAL_SECONDS).toString();
-      localStorage.setItem("countdown_target", targetTime);
-    }
-
-    const updateTimer = () => {
-      const now = Math.floor(Date.now() / 1000);
-      const remaining = Math.max(0, parseInt(targetTime!, 10) - now);
-      
-      if (remaining === 0) {
-        // Reset if it reached zero (optional, or keep at zero)
-        const newTarget = (now + INITIAL_SECONDS).toString();
-        localStorage.setItem("countdown_target", newTarget);
-        setSeconds(INITIAL_SECONDS);
-      } else {
-        setSeconds(remaining);
-      }
-    };
-
-    updateTimer();
-    const timer = setInterval(updateTimer, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
+  const seconds = useCountdown();
 
   const formatTime = (s: number) => {
     const mins = Math.floor(s / 60);

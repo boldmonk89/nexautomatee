@@ -1,29 +1,23 @@
-import { useEffect, useState } from "react";
+import { useCountdown } from "@/hooks/useCountdown";
 
-const INITIAL_SECONDS = 600; // 10 minutes
-
-export function CountdownTimer() {
-  const [seconds, setSeconds] = useState(INITIAL_SECONDS);
-
-  useEffect(() => {
-    // Start exactly at 10:00 (INITIAL_SECONDS) whenever the component mounts
-    setSeconds(INITIAL_SECONDS);
-
-    const timer = setInterval(() => {
-      setSeconds((prev) => {
-        if (prev <= 1) return INITIAL_SECONDS;
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
+export function CountdownTimer({ showUrgency = true }: { showUrgency?: boolean }) {
+  const seconds = useCountdown();
 
   const mm = Math.floor(seconds / 60).toString().padStart(2, "0");
   const ss = (seconds % 60).toString().padStart(2, "0");
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center gap-6">
+      {showUrgency && (
+        <div className="flex flex-col items-center animate-pulse">
+          <span className="text-[12px] font-black uppercase tracking-[0.2em] text-[#FF3B30]">
+            Offer Ends In:
+          </span>
+          <div className="mt-1 text-[14px] font-bold text-foreground">
+            Today Only <span className="text-[#FF3B30]">₹299</span> — Regular <span className="line-through opacity-50">₹1,999</span>
+          </div>
+        </div>
+      )}
       <div className="flex items-end gap-2 sm:gap-3">
         <DigitBox value={mm[0]} label="" />
         <DigitBox value={mm[1]} label="MIN" />
