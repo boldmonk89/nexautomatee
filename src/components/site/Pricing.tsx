@@ -3,6 +3,7 @@ import { Reveal } from "./Reveal";
 import { GridBackground } from "./GridBackground";
 import { CountdownTimer } from "./CountdownTimer";
 import { RazorpayButton } from "./RazorpayButton";
+import { Gallery } from "./Gallery";
 
 const inclusions = [
   "All current n8n templates",
@@ -42,6 +43,8 @@ export function Pricing() {
         <Reveal className="mt-12 flex justify-center">
           <CountdownTimer />
         </Reveal>
+
+        <Gallery />
 
         <Reveal className="mx-auto mt-14 w-full max-w-[480px]">
           <div
