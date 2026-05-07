@@ -12,23 +12,33 @@ export function useCountdown() {
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
-    const update = () => {
-      const now = Math.floor(Date.now() / 1000);
-      let target = localStorage.getItem("countdown_target_v2");
+    // 1. Determine Target Time
+    let target = localStorage.getItem("countdown_target_v3");
+    const now = Math.floor(Date.now() / 1000);
+    
+    let targetNum = target ? parseInt(target, 10) : 0;
+
+    // Initialize if missing or invalid
+    if (!targetNum || isNaN(targetNum)) {
+      targetNum = now + INITIAL_SECONDS;
+      localStorage.setItem("countdown_target_v3", targetNum.toString());
+    }
+
+    const tick = () => {
+      const currentNow = Math.floor(Date.now() / 1000);
+      const remaining = Math.max(0, targetNum - currentNow);
       
-      let targetNum = target ? parseInt(target, 10) : 0;
-
-      if (isNaN(targetNum) || targetNum === 0) {
-        targetNum = now + INITIAL_SECONDS;
-        localStorage.setItem("countdown_target_v2", targetNum.toString());
+      // If reached zero, we can either stop or reset. 
+      // User requested it NOT to loop automatically, so we stop at 0.
+      setSeconds(remaining);
+      
+      if (remaining === 0) {
+        clearInterval(interval);
       }
-
-      const diff = Math.max(0, targetNum - now);
-      setSeconds(diff);
     };
 
-    update();
-    const interval = setInterval(update, 1000);
+    tick(); // Initial call
+    const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
   }, []);
 
