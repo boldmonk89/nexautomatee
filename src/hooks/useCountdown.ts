@@ -2,29 +2,39 @@ import { useState, useEffect } from "react";
 
 const INITIAL_SECONDS = 600; // 10 minutes
 
+declare global {
+  interface Window {
+    __NEX_COUNTDOWN_TARGET?: number;
+  }
+}
+
 export function useCountdown() {
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
-    // 1. Get or Initialize Target Time
-    let target = localStorage.getItem("countdown_target");
-    const now = Math.floor(Date.now() / 1000);
-
-    if (!target) {
-      target = (now + INITIAL_SECONDS).toString();
-      localStorage.setItem("countdown_target", target);
+    // 1. Initialize Global Target if not exists
+    if (!window.__NEX_COUNTDOWN_TARGET) {
+      const stored = localStorage.getItem("countdown_target");
+      const now = Math.floor(Date.now() / 1000);
+      
+      if (stored && parseInt(stored, 10) > now) {
+        window.__NEX_COUNTDOWN_TARGET = parseInt(stored, 10);
+      } else {
+        window.__NEX_COUNTDOWN_TARGET = now + INITIAL_SECONDS;
+        localStorage.setItem("countdown_target", window.__NEX_COUNTDOWN_TARGET.toString());
+      }
     }
 
     const update = () => {
-      const currentNow = Math.floor(Date.now() / 1000);
-      const targetVal = parseInt(localStorage.getItem("countdown_target") || "0", 10);
+      const now = Math.floor(Date.now() / 1000);
+      let target = window.__NEX_COUNTDOWN_TARGET || (now + INITIAL_SECONDS);
       
-      let diff = targetVal - currentNow;
+      let diff = target - now;
 
       if (diff <= 0) {
-        // Reset if reached zero
-        const newTarget = (currentNow + INITIAL_SECONDS).toString();
-        localStorage.setItem("countdown_target", newTarget);
+        target = now + INITIAL_SECONDS;
+        window.__NEX_COUNTDOWN_TARGET = target;
+        localStorage.setItem("countdown_target", target.toString());
         diff = INITIAL_SECONDS;
       }
 
