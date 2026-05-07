@@ -1,5 +1,4 @@
 import { Play, ArrowRight, Star, Lock, CheckCircle2, Infinity as InfinityIcon } from "lucide-react";
-import { motion } from "framer-motion";
 import { GridBackground } from "./GridBackground";
 
 export function Hero() {
@@ -7,15 +6,10 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden">
       <GridBackground />
       <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-24 md:pt-28 md:pb-32">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mx-auto max-w-4xl text-center"
-        >
+        <div className="mx-auto max-w-4xl text-center">
           <span className="pill mb-6">
             <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#2563EB" }} />
-            n8n automation templates
+            Trusted by 1000+ users
           </span>
           <h1
             className="font-extrabold leading-[1.02] tracking-[-0.04em] text-foreground"
@@ -37,8 +31,8 @@ export function Hero() {
             style={{ fontSize: "clamp(16px, 2vw, 20px)", lineHeight: 1.6 }}
           >
             Stop selling hours. Start selling systems. NexAutomate gives you ready-to-deploy n8n
-            automation templates — so you can earn while you sleep, serve more clients, and build
-            a business that runs itself.
+            automation templates plus premium digital products — so you can earn while you sleep,
+            serve more clients, and build a business that runs itself.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <a href="#pricing" className="btn-primary">
@@ -52,16 +46,10 @@ export function Hero() {
             <span className="pill"><CheckCircle2 size={14} /> Beginner Friendly</span>
             <span className="pill"><InfinityIcon size={14} /> Lifetime Access</span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Video demo */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-          className="relative mx-auto mt-16 w-full max-w-[900px]"
-        >
+        <div className="relative mx-auto mt-16 w-full max-w-[900px]">
           <div
             className="relative w-full overflow-hidden rounded-[20px] border"
             style={{
@@ -82,7 +70,7 @@ export function Hero() {
               <p className="text-sm font-medium text-muted-foreground">Product Demo Coming Soon</p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

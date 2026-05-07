@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { Reveal } from "./Reveal";
 
@@ -38,26 +37,18 @@ export function FAQ() {
                   <span className="pr-6 text-[16px] font-semibold tracking-tight md:text-[17px]">
                     {f.q}
                   </span>
-                  <motion.span animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.2 }}>
-                    <Plus size={20} className="text-muted-foreground" />
-                  </motion.span>
+                  <Plus
+                    size={20}
+                    className={`text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-45" : ""}`}
+                  />
                 </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key="content"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="overflow-hidden"
-                    >
-                      <p className="pb-6 pr-10 text-[15px] leading-relaxed text-muted-foreground">
-                        {f.a}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isOpen && (
+                  <div className="overflow-hidden">
+                    <p className="pb-6 pr-10 text-[15px] leading-relaxed text-muted-foreground">
+                      {f.a}
+                    </p>
+                  </div>
+                )}
               </div>
             );
           })}
