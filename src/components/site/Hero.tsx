@@ -27,11 +27,13 @@ export function Hero() {
     return () => observer.disconnect();
   }, []);
 
-  const toggleSound = () => {
+  const toggleSound = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (videoRef.current) {
-      const newMuted = !videoRef.current.muted;
-      videoRef.current.muted = newMuted;
-      setIsMuted(newMuted);
+      const isCurrentlyMuted = videoRef.current.muted;
+      videoRef.current.muted = !isCurrentlyMuted;
+      videoRef.current.volume = 1;
+      setIsMuted(!isCurrentlyMuted);
     }
   };
 
@@ -96,13 +98,17 @@ export function Hero() {
             {/* Sound Toggle Button */}
             <button 
               onClick={toggleSound}
-              className="absolute bottom-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-all hover:bg-black/70"
+              className="absolute bottom-6 right-6 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all hover:bg-black/80 border border-white/10 shadow-lg"
             >
               {isMuted ? (
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                <div className="flex items-center gap-2 px-4 whitespace-nowrap absolute right-14 bg-black/60 py-2 rounded-lg border border-white/10 animate-in fade-in slide-in-from-right-2">
+                  <span className="text-[12px] font-bold uppercase tracking-widest">Tap for sound</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                </div>
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
               )}
+              {isMuted && <div className="sr-only">Unmute</div>}
             </button>
 
             <div className="absolute inset-0 bg-black/10 pointer-events-none" />

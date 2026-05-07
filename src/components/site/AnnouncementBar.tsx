@@ -7,17 +7,32 @@ export function AnnouncementBar() {
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
-    const savedTime = localStorage.getItem("countdown_seconds");
-    const initial = savedTime ? parseInt(savedTime, 10) : INITIAL_SECONDS;
-    setSeconds(initial);
+    // Check if we have a target time in localStorage
+    let targetTime = localStorage.getItem("countdown_target");
+    
+    if (!targetTime) {
+      // Set target to 10 minutes from now
+      const now = Math.floor(Date.now() / 1000);
+      targetTime = (now + INITIAL_SECONDS).toString();
+      localStorage.setItem("countdown_target", targetTime);
+    }
 
-    const timer = setInterval(() => {
-      setSeconds((prev) => {
-        const next = prev <= 1 ? INITIAL_SECONDS : prev - 1;
-        localStorage.setItem("countdown_seconds", next.toString());
-        return next;
-      });
-    }, 1000);
+    const updateTimer = () => {
+      const now = Math.floor(Date.now() / 1000);
+      const remaining = Math.max(0, parseInt(targetTime!, 10) - now);
+      
+      if (remaining === 0) {
+        // Reset if it reached zero (optional, or keep at zero)
+        const newTarget = (now + INITIAL_SECONDS).toString();
+        localStorage.setItem("countdown_target", newTarget);
+        setSeconds(INITIAL_SECONDS);
+      } else {
+        setSeconds(remaining);
+      }
+    };
+
+    updateTimer();
+    const timer = setInterval(updateTimer, 1000);
 
     return () => clearInterval(timer);
   }, []);
@@ -29,25 +44,22 @@ export function AnnouncementBar() {
   };
 
   return (
-    <div className="relative z-[60] bg-[#0A0A0A] py-2 px-4 text-white overflow-hidden">
-      <div className="mx-auto flex max-w-7xl items-center justify-center gap-4 text-center text-[11px] font-bold uppercase tracking-widest sm:text-xs">
-        <p className="text-[13px] font-medium tracking-wide">
+    <div className="relative z-[60] bg-[#0A0A0A] py-3 px-4 text-white overflow-hidden border-b border-white/10">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 text-center">
+        <p className="text-[14px] font-bold tracking-wide sm:text-[16px]">
           🚀 Special Launch Offer: Get 80% OFF — Limited Time Only!
         </p>
         
-        <span className="hidden sm:inline-block h-3 w-[1px] bg-white/20" />
-        
-        <div className="flex items-center gap-2">
-          <span className="text-white/80">₹299 Today — ₹1,999 In:</span>
-          <span className="font-mono text-[14px] text-[#FF3B30] drop-shadow-[0_0_8px_rgba(255,59,48,0.5)]">
+        <div className="flex items-center gap-3 rounded-full bg-white/5 py-1.5 px-4 border border-white/10">
+          <span className="text-[12px] font-bold uppercase tracking-wider text-white/60">₹299 Today — ₹1,999 In:</span>
+          <span className="font-mono text-[18px] font-black text-[#FF3B30] drop-shadow-[0_0_10px_rgba(255,59,48,0.6)]">
             {formatTime(seconds)}
           </span>
         </div>
-
-        <span className="hidden md:inline-block h-3 w-[1px] bg-white/20" />
         
-        <a href="#cta" className="hidden md:inline-block hover:underline decoration-[#FF3B30] underline-offset-4 transition-all">
-          Lock in Lifetime Access Now →
+        <a href="#cta" className="text-[13px] font-bold uppercase tracking-widest hover:text-[#FF3B30] transition-all flex items-center gap-2 group">
+          Lock in Lifetime Access Now 
+          <span className="group-hover:translate-x-1 transition-transform">→</span>
         </a>
       </div>
     </div>
