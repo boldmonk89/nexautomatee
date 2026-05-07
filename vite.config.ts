@@ -18,4 +18,17 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  ssr: {
+    noExternal: [
+      "@tanstack/react-query",
+      "@tanstack/react-router",
+      "@tanstack/react-start",
+      "@tanstack/router-plugin",
+      "lucide-react",
+      "sonner",
+      "clsx",
+      "tailwind-merge",
+      "class-variance-authority",
+    ],
+  },
 });
