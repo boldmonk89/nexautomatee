@@ -20,9 +20,16 @@ export function Navbar() {
         borderColor: "rgba(229,231,235,0.8)",
       }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#top" className="text-[17px] font-semibold tracking-tight">
-          NexAutomate
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+        <a href="#top" className="flex items-center gap-2 group transition-transform hover:scale-[1.02]">
+          <img 
+            src="/assets/logo.png" 
+            alt="NexAutomate Logo" 
+            className="h-10 w-auto object-contain mix-blend-multiply" 
+          />
+          <span className="text-[19px] font-bold tracking-tight text-[#0A0A0A]">
+            NexAutomate
+          </span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
