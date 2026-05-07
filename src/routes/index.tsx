@@ -4,6 +4,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { Features } from "@/components/site/Features";
 import { TemplateShowcase } from "@/components/site/TemplateShowcase";
+import { DigitalProductsSection } from "@/components/site/DigitalProductsSection";
 import { Templates } from "@/components/site/Templates";
 import { HowItWorks } from "@/components/site/HowItWorks";
 import { FAQ } from "@/components/site/FAQ";
@@ -39,6 +40,7 @@ function Index() {
         <Hero />
         <Features />
         <TemplateShowcase />
+        <DigitalProductsSection />
         <Templates />
         <HowItWorks />
         <FAQ />
