@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SuccessRouteImport } from './routes/success'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as BundleRouteImport } from './routes/bundle'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TermsRoute = TermsRouteImport.update({
@@ -29,6 +30,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BundleRoute = BundleRouteImport.update({
+  id: '/bundle',
+  path: '/bundle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bundle': typeof BundleRoute
   '/privacy': typeof PrivacyRoute
   '/success': typeof SuccessRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bundle': typeof BundleRoute
   '/privacy': typeof PrivacyRoute
   '/success': typeof SuccessRoute
   '/terms': typeof TermsRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bundle': typeof BundleRoute
   '/privacy': typeof PrivacyRoute
   '/success': typeof SuccessRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/privacy' | '/success' | '/terms'
+  fullPaths: '/' | '/bundle' | '/privacy' | '/success' | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/privacy' | '/success' | '/terms'
-  id: '__root__' | '/' | '/privacy' | '/success' | '/terms'
+  to: '/' | '/bundle' | '/privacy' | '/success' | '/terms'
+  id: '__root__' | '/' | '/bundle' | '/privacy' | '/success' | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BundleRoute: typeof BundleRoute
   PrivacyRoute: typeof PrivacyRoute
   SuccessRoute: typeof SuccessRoute
   TermsRoute: typeof TermsRoute
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bundle': {
+      id: '/bundle'
+      path: '/bundle'
+      fullPath: '/bundle'
+      preLoaderRoute: typeof BundleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BundleRoute: BundleRoute,
   PrivacyRoute: PrivacyRoute,
   SuccessRoute: SuccessRoute,
   TermsRoute: TermsRoute,

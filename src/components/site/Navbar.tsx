@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const links = [
-  { label: "What's Included", href: "#features" },
-  { label: "Why Us", href: "#why" },
-  { label: "How It Works", href: "#how" },
-  { label: "FAQ", href: "#faq" },
+  { label: "All-In-One Bundle", href: "/bundle", isExternal: false },
+  { label: "What's Included", href: "#features", isExternal: true },
+  { label: "Why Us", href: "#why", isExternal: true },
+  { label: "How It Works", href: "#how", isExternal: true },
+  { label: "FAQ", href: "#faq", isExternal: true },
 ];
 
 export function Navbar() {
@@ -21,7 +23,7 @@ export function Navbar() {
       }}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-        <a href="#top" className="flex items-center gap-2 group transition-transform hover:scale-[1.02]">
+        <Link to="/" className="flex items-center gap-2 group transition-transform hover:scale-[1.02]">
           <img 
             src="/assets/logo.png" 
             alt="NexAutomate Logo" 
@@ -30,12 +32,18 @@ export function Navbar() {
           <span className="text-[19px] font-bold tracking-tight text-[#0A0A0A]">
             NexAutomate
           </span>
-        </a>
+        </Link>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              {l.label}
-            </a>
+            l.isExternal ? (
+              <a key={l.href} href={l.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                {l.label}
+              </a>
+            ) : (
+              <Link key={l.href} to={l.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                {l.label}
+              </Link>
+            )
           ))}
         </nav>
         <div className="hidden md:block">
@@ -53,14 +61,25 @@ export function Navbar() {
         <div className="border-t bg-white px-6 py-4 md:hidden">
           <div className="flex flex-col gap-3">
             {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="text-sm text-muted-foreground"
-              >
-                {l.label}
-              </a>
+              l.isExternal ? (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="text-sm text-muted-foreground"
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  onClick={() => setOpen(false)}
+                  className="text-sm text-muted-foreground"
+                >
+                  {l.label}
+                </Link>
+              )
             ))}
             <a href="#pricing" onClick={() => setOpen(false)} className="btn-primary justify-center">Get Access</a>
           </div>

@@ -15,6 +15,10 @@ const inclusions = [
 ];
 
 export function Pricing() {
+  const seconds = useCountdown();
+  const isExpired = seconds === 0;
+  const currentPrice = isExpired ? "₹1,999" : "₹299";
+
   return (
     <section id="pricing" className="relative overflow-hidden">
       <GridBackground />
@@ -32,11 +36,12 @@ export function Pricing() {
             <Clock size={12} /> Limited Time Offer
           </span>
           <h2 className="mt-5 text-3xl font-bold tracking-tight md:text-5xl">
-            Get Full Access For Just ₹299 Today
+            Get Full Access For Just {currentPrice} Today
           </h2>
           <p className="mt-4 text-muted-foreground md:text-lg">
-            This price won't last. Once the timer hits zero, this n8n template bundle moves to
-            ₹1,999. Lock in your lifetime access now.
+            {isExpired 
+              ? "The special launch offer has expired. You can still lock in lifetime access at the regular price."
+              : "This price won't last. Once the timer hits zero, this n8n template bundle moves to ₹1,999. Lock in your lifetime access now."}
           </p>
         </Reveal>
 
@@ -52,10 +57,10 @@ export function Pricing() {
             style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.10)" }}
           >
             <div className="text-center">
-              <div className="text-xl text-muted-foreground line-through">₹1,999</div>
-              <div className="mt-1 text-5xl font-extrabold tracking-tight md:text-6xl">₹299</div>
-              <div className="mt-2 text-sm font-semibold" style={{ color: "#DC2626" }}>
-                Today ₹299 — Regular price ₹1,999
+              {!isExpired && <div className="text-xl text-muted-foreground line-through">₹1,999</div>}
+              <div className="mt-1 text-5xl font-extrabold tracking-tight md:text-6xl">{currentPrice}</div>
+              <div className="mt-2 text-sm font-semibold" style={{ color: isExpired ? "#666" : "#DC2626" }}>
+                {isExpired ? "Regular Price" : `Today ${currentPrice} — Regular price ₹1,999`}
               </div>
               <p className="mt-2 text-sm text-muted-foreground">
                 One-time payment. Lifetime access. Instant delivery.
@@ -78,7 +83,7 @@ export function Pricing() {
 
             <RazorpayButton
               className="btn-primary mt-7 w-full justify-center"
-              label="Start Automating Now — ₹299"
+              label={isExpired ? `Get Access Now — ${currentPrice}` : `Start Automating Now — ${currentPrice}`}
             />
             <p className="mt-3 text-center text-xs text-muted-foreground">
               Secure payment. Instant access. No subscription.

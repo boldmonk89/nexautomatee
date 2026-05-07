@@ -17,7 +17,9 @@ export function AnnouncementBar() {
         </p>
         
         <div className="flex items-center gap-3 rounded-full bg-white/5 py-1.5 px-4 border border-white/10">
-          <span className="text-[12px] font-bold uppercase tracking-wider text-white/60">₹299 Today — ₹1,999 In:</span>
+          <span className="text-[12px] font-bold uppercase tracking-wider text-white/60">
+            {seconds === 0 ? "Regular Price Active — ₹1,999" : "₹299 Today — ₹1,999 In:"}
+          </span>
           <span className="font-mono text-[18px] font-black text-[#FF3B30] drop-shadow-[0_0_10px_rgba(255,59,48,0.6)]">
             {formatTime(seconds)}
           </span>

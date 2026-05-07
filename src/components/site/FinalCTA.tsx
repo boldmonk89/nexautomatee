@@ -3,8 +3,13 @@ import { Reveal } from "./Reveal";
 import { CountdownTimer } from "./CountdownTimer";
 
 export function FinalCTA() {
+  const seconds = useCountdown();
+  const isExpired = seconds === 0;
+  const currentPrice = isExpired ? "₹1,999" : "₹299";
+
   return (
     <section id="cta" className="relative overflow-hidden" style={{ background: "#0A0A0A", color: "#fff" }}>
+      {/* ... existing style ... */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -31,12 +36,12 @@ export function FinalCTA() {
             <br />Business Today.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-[16px] md:text-[18px]" style={{ color: "#9CA3AF" }}>
-            Get instant lifetime access to all our premium n8n templates for a one-time payment of just ₹299.
+            Get instant lifetime access to all our premium n8n templates for a one-time payment of just {currentPrice}.
           </p>
           <div className="mt-10 flex flex-col items-center gap-10">
             <RazorpayButton
               className="btn-invert !px-12 !py-5 text-xl shadow-[0_0_40px_rgba(37,99,235,0.3)]"
-              label="Get Access — ₹299"
+              label={isExpired ? `Get Access — ${currentPrice}` : `Get Access — ${currentPrice}`}
             />
             
             <div className="scale-110">
