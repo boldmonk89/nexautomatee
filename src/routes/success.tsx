@@ -1,3 +1,5 @@
+"use client";
+
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, ArrowRight, Download, Mail, ExternalLink } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
