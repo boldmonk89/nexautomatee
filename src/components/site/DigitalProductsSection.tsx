@@ -1,6 +1,7 @@
 import { Reveal } from "./Reveal";
 import { GridBackground } from "./GridBackground";
-import { Package, ArrowRight, ShieldCheck, Zap, Layers } from "lucide-react";
+import { Package, ArrowRight, ShieldCheck, Zap } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export function DigitalProductsSection() {
   return (
@@ -47,9 +48,9 @@ export function DigitalProductsSection() {
               </div>
 
               <div className="mt-12">
-                <a href="#pricing" className="btn-primary">
+                <Link to="/bundle" className="btn-primary">
                   Explore The Bundle <ArrowRight size={18} className="ml-2" />
-                </a>
+                </Link>
               </div>
             </Reveal>
           </div>
@@ -57,30 +58,13 @@ export function DigitalProductsSection() {
           {/* Right Side: Visual Element */}
           <div className="w-full md:w-1/2 relative">
             <Reveal delay={0.2}>
-              <div className="relative aspect-square md:aspect-auto md:h-[500px] w-full rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-blue-500/10 to-transparent p-1">
-                <div className="h-full w-full rounded-[22px] bg-[#0A0A0A] overflow-hidden flex items-center justify-center relative">
-                  {/* Floating elements to represent "Digital Products" */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                     <Layers size={300} className="text-blue-600 animate-pulse" />
-                  </div>
-                  <div className="z-10 text-center p-8">
-                     <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-3xl bg-blue-600 shadow-[0_0_50px_rgba(37,99,235,0.5)]">
-                        <Package size={48} className="text-white" />
-                     </div>
-                     <h3 className="text-2xl font-black text-white">All-In-One Bundle</h3>
-                     <p className="mt-2 text-gray-400">100+ Assets & Templates</p>
-                  </div>
-                  
-                  {/* Glassmorphism cards for flair */}
-                  <div className="absolute top-10 right-10 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md animate-bounce" style={{ animationDuration: '3s' }}>
-                    <div className="h-3 w-12 bg-blue-500 rounded-full mb-2" />
-                    <div className="h-2 w-8 bg-gray-600 rounded-full" />
-                  </div>
-                  <div className="absolute bottom-10 left-10 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md animate-bounce" style={{ animationDuration: '4s' }}>
-                    <div className="h-3 w-12 bg-green-500 rounded-full mb-2" />
-                    <div className="h-2 w-8 bg-gray-600 rounded-full" />
-                  </div>
-                </div>
+              <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-blue-500/20 to-transparent">
+                <img 
+                  src="/assets/bundle_pack.jpg" 
+                  alt="Ultimate Digital Product Pack Mega Bundle"
+                  className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-blue-600/5 group-hover:bg-transparent transition-colors" />
               </div>
             </Reveal>
           </div>
