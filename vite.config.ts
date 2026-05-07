@@ -9,11 +9,7 @@ import path from "path";
 export default defineConfig({
   plugins: [
     tanstackRouter(),
-    tanstackStart({
-      nitro: {
-        preset: "vercel",
-      },
-    }),
+    tanstackStart(),
     tailwindcss(),
     tsconfigPaths(),
   ],
