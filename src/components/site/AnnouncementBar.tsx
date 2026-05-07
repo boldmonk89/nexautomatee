@@ -3,19 +3,20 @@ import { Clock } from "lucide-react";
 
 const INITIAL_SECONDS = 600; // 10 minutes
 
-function getRemainingSeconds() {
-  const elapsed = Math.floor(Date.now() / 1000) % INITIAL_SECONDS;
-  return INITIAL_SECONDS - elapsed;
-}
-
 export function AnnouncementBar() {
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
-    setSeconds(getRemainingSeconds());
+    // Start exactly at 10:00 (INITIAL_SECONDS) whenever the component mounts
+    setSeconds(INITIAL_SECONDS);
+
     const timer = setInterval(() => {
-      setSeconds(getRemainingSeconds());
+      setSeconds((prev) => {
+        if (prev <= 1) return INITIAL_SECONDS;
+        return prev - 1;
+      });
     }, 1000);
+
     return () => clearInterval(timer);
   }, []);
 
@@ -44,7 +45,7 @@ export function AnnouncementBar() {
 
         <span className="hidden md:inline-block h-3 w-[1px] bg-white/20" />
         
-        <a href="#pricing" className="hidden md:inline-block hover:underline decoration-[#FF3B30] underline-offset-4 transition-all">
+        <a href="#cta" className="hidden md:inline-block hover:underline decoration-[#FF3B30] underline-offset-4 transition-all">
           Lock in Lifetime Access Now →
         </a>
       </div>

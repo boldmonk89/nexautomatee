@@ -3,14 +3,11 @@ import { Plus } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const faqs = [
-  { q: "How do I access the templates after purchase?", a: "Immediately after payment, you'll receive an email with download links and setup instructions. Everything is delivered digitally — no waiting." },
-  { q: "Do I need to know how to code?", a: "Not at all. Every template is designed for non-technical users. If you can follow step-by-step instructions, you can set these up. Most users are live within 15–30 minutes." },
-  { q: "Do I get lifetime access?", a: "Yes. Once you purchase, the templates are yours forever. We continuously improve our templates and all updates are included at no extra cost." },
-  { q: "How fast can I get a workflow running?", a: "Most templates take 15–30 minutes to set up from scratch. The plug-and-play design means you're connecting existing accounts, not building anything." },
-  { q: "Can I use these templates for my clients?", a: "Yes. You can use the templates for your own business and for client projects. Many of our users have built agencies around these systems." },
-  { q: "What is your refund policy?", a: "We offer a 7-day no-questions-asked refund policy. If you're not satisfied for any reason within 7 days of purchase, contact us and we'll issue a full refund." },
-  { q: "Do I need to pay for n8n separately?", a: "n8n has a free self-hosted version you can use at no cost. Some cloud features may require a paid n8n plan — we'll note any requirements clearly in each template's documentation." },
-  { q: "What tools do these templates connect to?", a: "Our templates connect to tools like Google Workspace, Notion, Slack, WhatsApp, Instagram, YouTube, OpenAI, Gmail, Airtable, and many more via n8n's 400+ native integrations." },
+  { q: "Do I need coding?", a: "No coding is required. We've built everything for you. You just need to import the templates and connect your API keys following our simple guides." },
+  { q: "Is n8n free?", a: "Yes, n8n has a powerful self-hosted version that is free to use forever. There is also a cloud version if you prefer not to host it yourself." },
+  { q: "How do I import templates?", a: "It's as simple as copy-pasting. You copy the JSON code we provide, and paste it directly into your n8n workflow canvas. It takes less than 5 seconds." },
+  { q: "Will I get updates?", a: "Yes! Your purchase includes lifetime access to all current templates and any future n8n templates we add to this bundle." },
+  { q: "Is there support?", a: "Absolutely. If you get stuck or have questions about setting up a specific template, our support team is ready to help you out via email." },
 ];
 
 export function FAQ() {

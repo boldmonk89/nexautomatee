@@ -95,7 +95,7 @@ function SuccessPage() {
             className="mt-12"
           >
             <p className="text-sm text-muted-foreground">
-              Need help? Contact us at <span className="font-medium text-foreground">support@nexautomate.com</span>
+              Need help? Contact us at <span className="font-medium text-foreground">support@nexautomate.online</span>
             </p>
           </motion.div>
         </div>

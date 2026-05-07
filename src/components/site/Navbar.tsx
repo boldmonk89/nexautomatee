@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Features", href: "#features" },
-  { label: "Templates", href: "#templates" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "What's Included", href: "#features" },
+  { label: "Why Us", href: "#why" },
+  { label: "How It Works", href: "#how" },
   { label: "FAQ", href: "#faq" },
 ];
 

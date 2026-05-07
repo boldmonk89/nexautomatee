@@ -2,12 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnnouncementBar } from "@/components/site/AnnouncementBar";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
-import { Stats } from "@/components/site/Stats";
 import { Features } from "@/components/site/Features";
 import { Templates } from "@/components/site/Templates";
-import { OtherProducts } from "@/components/site/OtherProducts";
-import { Pricing } from "@/components/site/Pricing";
-import { Testimonials } from "@/components/site/Testimonials";
+import { HowItWorks } from "@/components/site/HowItWorks";
 import { FAQ } from "@/components/site/FAQ";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { Footer } from "@/components/site/Footer";
@@ -19,13 +16,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Ready-to-deploy n8n automation templates for creators and small businesses. Lead gen, AI workflows, content automation — lifetime access from ₹299.",
+          "Ready-to-deploy n8n automation templates for creators and businesses. Plug-and-play workflows — lifetime access.",
       },
-      { property: "og:title", content: "NexAutomate — Automate Everything. Scale Faster." },
+      { property: "og:title", content: "NexAutomate — n8n Automation Templates" },
       {
         property: "og:description",
         content:
-          "Premium n8n automation templates. Plug-and-play workflows that earn while you sleep.",
+          "Premium n8n automation templates. Plug-and-play workflows that automate your business.",
       },
     ],
   }),
@@ -39,12 +36,9 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
-        <Stats />
         <Features />
         <Templates />
-        <OtherProducts />
-        <Pricing />
-        <Testimonials />
+        <HowItWorks />
         <FAQ />
         <FinalCTA />
       </main>

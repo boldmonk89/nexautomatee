@@ -7,15 +7,15 @@ import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 import { GridBackground } from "./GridBackground";
 
 const features: { icon: LucideIcon; title: string; desc: string }[] = [
-  { icon: Workflow, title: "Ready-to-Use n8n Workflows", desc: "Fully built automation workflows you can import into n8n in seconds. No building from scratch." },
-  { icon: Bot, title: "AI Automation Systems", desc: "Leverage OpenAI, Claude, and other AI APIs — pre-connected inside ready templates." },
-  { icon: Plug, title: "Plug-and-Play Setup", desc: "Connect your accounts, hit activate. Most templates take under 15 minutes to go live." },
-  { icon: GraduationCap, title: "Beginner Friendly", desc: "No tech background needed. Every template includes plain-English instructions." },
-  { icon: InfinityIcon, title: "Lifetime Access", desc: "Pay once, use forever. All future updates to templates you've purchased are free." },
-  { icon: BookOpen, title: "Step-by-Step Documentation", desc: "Detailed written guides with screenshots so you never get stuck." },
-  { icon: Clock, title: "Time-Saving Automations", desc: "Eliminate the manual, repetitive tasks eating hours of your week." },
-  { icon: Users, title: "Lead Generation Systems", desc: "Automated lead capture, follow-up sequences, and CRM syncs — all pre-built." },
-  { icon: FileText, title: "Content Automation Systems", desc: "Auto-publish content, repurpose posts, schedule newsletters — on autopilot." },
+  { icon: Workflow, title: "Ready-made n8n workflows", desc: "Fully built, tested automation workflows you can import into n8n in seconds." },
+  { icon: Bot, title: "AI Automations", desc: "Leverage OpenAI and LLMs inside your workflows for intelligent data processing." },
+  { icon: Users, title: "Lead Generation Automations", desc: "Automated systems to capture, enrich, and follow up with leads 24/7." },
+  { icon: FileText, title: "Content Automation Systems", desc: "Auto-repurpose and distribute content across all your social channels." },
+  { icon: Plug, title: "WhatsApp/Email Workflows", desc: "Build powerful communication systems that run entirely on autopilot." },
+  { icon: Clock, title: "Time-saving Systems", desc: "Eliminate manual repetitive tasks and focus on high-impact work." },
+  { icon: GraduationCap, title: "Easy Import Setup", desc: "Just copy the JSON, import into n8n, and connect your API keys." },
+  { icon: InfinityIcon, title: "Lifetime Access", desc: "Pay once and get access to all current templates forever." },
+  { icon: Clock, title: "Future Updates", desc: "Get every new template we release in the future at no extra cost." },
 ];
 
 export function Features() {
@@ -24,12 +24,12 @@ export function Features() {
       <GridBackground />
       <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="section-label">Everything Included</span>
+          <span className="section-label">Included Workflows</span>
           <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-5xl">
-            One Purchase. Unlimited Leverage.
+            What You Will Get
           </h2>
           <p className="mt-4 text-muted-foreground md:text-lg">
-            Every template is built to work from day one — no coding required, no complicated setup.
+            A complete library of production-ready n8n templates to automate every part of your business.
           </p>
         </Reveal>
 
@@ -48,7 +48,7 @@ export function Features() {
         </RevealGroup>
 
         <Reveal className="mt-14 flex justify-center">
-          <a href="#pricing" className="btn-primary">
+          <a href="#cta" className="btn-primary">
             Get Instant Access <ArrowRight size={16} />
           </a>
         </Reveal>

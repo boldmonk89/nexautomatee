@@ -1,9 +1,9 @@
-import { ArrowRight } from "lucide-react";
+import { RazorpayButton } from "./RazorpayButton";
 import { Reveal } from "./Reveal";
 
 export function FinalCTA() {
   return (
-    <section className="relative overflow-hidden" style={{ background: "#0A0A0A", color: "#fff" }}>
+    <section id="cta" className="relative overflow-hidden" style={{ background: "#0A0A0A", color: "#fff" }}>
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -26,27 +26,25 @@ export function FinalCTA() {
             className="font-extrabold tracking-tight"
             style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.05 }}
           >
-            Start Building Automated
-            <br />Income Today.
+            Start Automating Your
+            <br />Business Today.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-[16px] md:text-[18px]" style={{ color: "#9CA3AF" }}>
-            Everything you need to automate your business, generate leads on autopilot, and scale
-            without working more hours.
+            Get instant lifetime access to all our premium n8n templates for a one-time payment of just ₹299.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <a href="#pricing" className="btn-invert">
-              Get Access Now — ₹299 <ArrowRight size={16} />
-            </a>
-            <a href="#templates" className="btn-ghost-dark">View All Templates</a>
+            <RazorpayButton
+              className="btn-invert !px-10 !py-4 text-lg"
+              label="Get Access — ₹299"
+            />
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm" style={{ color: "#9CA3AF" }}>
-            <span>✓ Instant access</span>
-            <span>✓ 7-day refund</span>
-            <span>✓ Lifetime updates</span>
-            <span>✓ No subscription</span>
+            <span>✓ Instant Digital Delivery</span>
+            <span>✓ Lifetime Updates</span>
+            <span>✓ No Subscription</span>
           </div>
         </Reveal>
       </div>
     </section>
   );
-}
+}

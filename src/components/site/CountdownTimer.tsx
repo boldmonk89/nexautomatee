@@ -1,29 +1,22 @@
 import { useEffect, useState } from "react";
 
-const INITIAL = 600;
-
-function getRemainingSeconds() {
-  const elapsed = Math.floor(Date.now() / 1000) % INITIAL;
-  return INITIAL - elapsed;
-}
+const INITIAL_SECONDS = 600; // 10 minutes
 
 export function CountdownTimer() {
-  const [seconds, setSeconds] = useState(INITIAL);
-  const [reset, setReset] = useState(false);
+  const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
-    setSeconds(getRemainingSeconds());
-    const id = setInterval(() => {
-      setSeconds((previous) => {
-        const next = getRemainingSeconds();
-        if (next > previous) {
-          setReset(true);
-          window.setTimeout(() => setReset(false), 2400);
-        }
-        return next;
+    // Start exactly at 10:00 (INITIAL_SECONDS) whenever the component mounts
+    setSeconds(INITIAL_SECONDS);
+
+    const timer = setInterval(() => {
+      setSeconds((prev) => {
+        if (prev <= 1) return INITIAL_SECONDS;
+        return prev - 1;
       });
     }, 1000);
-    return () => clearInterval(id);
+
+    return () => clearInterval(timer);
   }, []);
 
   const mm = Math.floor(seconds / 60).toString().padStart(2, "0");
@@ -34,15 +27,10 @@ export function CountdownTimer() {
       <div className="flex items-end gap-2 sm:gap-3">
         <DigitBox value={mm[0]} label="" />
         <DigitBox value={mm[1]} label="MIN" />
-        <span className="pb-8 text-3xl font-extrabold sm:text-5xl">:</span>
+        <span className="pb-8 text-3xl font-extrabold sm:text-5xl text-foreground">:</span>
         <DigitBox value={ss[0]} label="" />
         <DigitBox value={ss[1]} label="SEC" />
       </div>
-      {reset && (
-        <p className="mt-4 text-sm font-medium" style={{ color: "#DC2626" }}>
-          Price increasing soon — grab it now!
-        </p>
-      )}
     </div>
   );
 }
