@@ -1,7 +1,13 @@
 import { useCountdown } from "@/hooks/useCountdown";
+import { useLocation } from "@tanstack/react-router";
 
 export function AnnouncementBar() {
   const seconds = useCountdown();
+  const location = useLocation();
+  const isBundlePage = location.pathname === "/bundle";
+
+  const offerPrice = isBundlePage ? "₹499" : "₹299";
+  const regularPrice = isBundlePage ? "₹49,997" : "₹1,999";
 
   const formatTime = (s: number) => {
     const mins = Math.floor(s / 60);
@@ -18,14 +24,14 @@ export function AnnouncementBar() {
         
         <div className="flex items-center gap-3 rounded-full bg-white/5 py-1.5 px-4 border border-white/10">
           <span className="text-[12px] font-bold uppercase tracking-wider text-white/60">
-            {seconds === 0 ? "Regular Price Active — ₹1,999" : "₹299 Today — ₹1,999 In:"}
+            {seconds === 0 ? `Regular Price Active — ${regularPrice}` : `${offerPrice} Today — ${regularPrice} In:`}
           </span>
           <span className="font-mono text-[18px] font-black text-[#FF3B30] drop-shadow-[0_0_10px_rgba(255,59,48,0.6)]">
             {formatTime(seconds)}
           </span>
         </div>
         
-        <a href="#cta" className="text-[13px] font-bold uppercase tracking-widest hover:text-[#FF3B30] transition-all flex items-center gap-2 group">
+        <a href="#pricing" className="text-[13px] font-bold uppercase tracking-widest hover:text-[#FF3B30] transition-all flex items-center gap-2 group">
           Lock in Lifetime Access Now 
           <span className="group-hover:translate-x-1 transition-transform">→</span>
         </a>
