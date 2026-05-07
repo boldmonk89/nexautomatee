@@ -40,7 +40,7 @@ export function FinalCTA() {
             />
             
             <div className="scale-110">
-              <CountdownTimer />
+              <CountdownTimer isDark />
             </div>
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm" style={{ color: "#9CA3AF" }}>
