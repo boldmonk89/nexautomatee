@@ -220,11 +220,11 @@ function BundlePage() {
                    "Screenshot 2026-05-06 221510.png"
                  ].map((img, idx) => (
                    <Reveal key={idx} delay={idx * 0.05}>
-                      <div className="aspect-[3/4] rounded-xl overflow-hidden border bg-background group cursor-pointer">
+                      <div className="aspect-[3/4] rounded-xl overflow-hidden border bg-black/40 group cursor-pointer">
                          <img 
                            src={`/images/bundle/${img}`} 
                            alt="Bundle Item" 
-                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                           className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                          />
                       </div>
                    </Reveal>
@@ -435,10 +435,14 @@ function BundleCategory({ title, icon, items, image }: { title: string; icon: Re
   return (
     <div className="card-surface p-0 group hover:border-blue-500/50 transition-all overflow-hidden flex flex-col">
       {image && (
-        <div className="relative aspect-video overflow-hidden border-b">
-           <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-           <div className="absolute bottom-4 left-6 flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-md border border-white/10 text-white">
+        <div className="relative aspect-[4/5] overflow-hidden border-b bg-black/50">
+           <img 
+             src={image} 
+             alt={title} 
+             className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
+           />
+           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+           <div className="absolute bottom-4 left-6 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/20 backdrop-blur-md border border-blue-500/30 text-blue-500">
               {icon}
            </div>
         </div>
