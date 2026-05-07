@@ -29,10 +29,9 @@ export function AnnouncementBar() {
   return (
     <div className="relative z-[60] bg-[#0A0A0A] py-2 px-4 text-white overflow-hidden">
       <div className="mx-auto flex max-w-7xl items-center justify-center gap-4 text-center text-[11px] font-bold uppercase tracking-widest sm:text-xs">
-        <div className="flex items-center gap-1.5 animate-pulse text-[#FF3B30]">
-          <Clock size={14} className="animate-spin-slow" />
-          <span>Limited Time Offer</span>
-        </div>
+        <p className="text-[13px] font-medium tracking-wide">
+          🚀 Special Launch Offer: Get 80% OFF — Limited Time Only!
+        </p>
         
         <span className="hidden sm:inline-block h-3 w-[1px] bg-white/20" />
         
