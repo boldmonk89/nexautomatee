@@ -3,6 +3,7 @@ import { AnnouncementBar } from "@/components/site/AnnouncementBar";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { Features } from "@/components/site/Features";
+import { TemplateShowcase } from "@/components/site/TemplateShowcase";
 import { Templates } from "@/components/site/Templates";
 import { HowItWorks } from "@/components/site/HowItWorks";
 import { FAQ } from "@/components/site/FAQ";
@@ -37,6 +38,7 @@ function Index() {
       <main>
         <Hero />
         <Features />
+        <TemplateShowcase />
         <Templates />
         <HowItWorks />
         <FAQ />
