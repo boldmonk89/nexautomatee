@@ -1,10 +1,7 @@
-"use client";
-
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, ArrowRight, Download, Mail, ExternalLink } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
-import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/success")({
   component: SuccessPage,
@@ -26,20 +23,11 @@ function SuccessPage() {
         />
         
         <div className="relative mx-auto max-w-2xl text-center">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring" }}
-            className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-green-500/10 text-green-500"
-          >
+          <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-green-500/10 text-green-500">
             <CheckCircle2 size={48} strokeWidth={2.5} />
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
+          <div>
             <h1 className="text-4xl font-extrabold tracking-tight text-foreground md:text-6xl">
               Payment Successful!
             </h1>
@@ -47,14 +35,9 @@ function SuccessPage() {
               Thank you for your purchase! You're now ready to scale your business with NexAutomate. 
               We've sent a confirmation email with your access details.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="mt-12 grid gap-4 sm:grid-cols-2"
-          >
+          <div className="mt-12 grid gap-4 sm:grid-cols-2">
             <div className="card-surface flex flex-col items-center p-8 text-center">
               <div className="mb-4 rounded-xl bg-primary/5 p-3 text-primary">
                 <Download size={24} />
@@ -88,18 +71,13 @@ function SuccessPage() {
                 Back to Home
               </Link>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="mt-12"
-          >
+          <div className="mt-12">
             <p className="text-sm text-muted-foreground">
               Need help? Contact us at <span className="font-medium text-foreground">support@nexautomate.online</span>
             </p>
-          </motion.div>
+          </div>
         </div>
       </main>
       <Footer />
