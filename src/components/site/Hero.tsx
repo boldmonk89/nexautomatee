@@ -5,6 +5,8 @@ import { CountdownTimer } from "./CountdownTimer";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -13,38 +15,27 @@ export function Hero() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            video.muted = false;
-            video.volume = 1;
-            video.play().catch(() => {
-              // Browser may still block sound if no interaction occurred
-              video.muted = true;
-              video.play();
-            });
+            video.play().catch(() => {});
           } else {
             video.pause();
           }
         });
       },
-      { threshold: 0.01 } // Trigger as soon as any part is visible
+      { threshold: 0.01 }
     );
 
     observer.observe(video);
-
-    // Also unmute on first click anywhere on the page to satisfy browser rules
-    const handleFirstInteraction = () => {
-      if (videoRef.current) {
-        videoRef.current.muted = false;
-        videoRef.current.volume = 1;
-      }
-      window.removeEventListener("click", handleFirstInteraction);
-    };
-    window.addEventListener("click", handleFirstInteraction);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("click", handleFirstInteraction);
-    };
+    return () => observer.disconnect();
   }, []);
+
+  const handleUnmute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+      videoRef.current.volume = 1;
+      videoRef.current.play();
+      setHasInteracted(true);
+    }
+  };
 
   return (
     <section id="top" className="relative overflow-hidden">
@@ -88,7 +79,8 @@ export function Hero() {
         {/* Video demo */}
         <div className="relative mx-auto mt-16 w-full max-w-[900px]">
           <div
-            className="relative w-full overflow-hidden rounded-[20px] border"
+            className="relative w-full overflow-hidden rounded-[20px] border group cursor-pointer"
+            onClick={handleUnmute}
             style={{
               aspectRatio: "16 / 9",
               background: "#000",
@@ -99,7 +91,7 @@ export function Hero() {
             <video 
               ref={videoRef}
               autoPlay 
-              muted
+              muted={!hasInteracted}
               loop 
               playsInline
               className="absolute inset-0 h-full w-full object-cover"
@@ -107,6 +99,17 @@ export function Hero() {
               <source src="/digivideo.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
+            
+            {!hasInteracted && (
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm transition-all group-hover:bg-black/30">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white text-black shadow-2xl animate-bounce">
+                  <Play size={32} fill="black" />
+                </div>
+                <p className="mt-6 text-xl font-black uppercase tracking-widest text-white drop-shadow-lg">
+                  Click to Unmute & Play
+                </p>
+              </div>
+            )}
             
             <div className="absolute inset-0 bg-black/5 pointer-events-none" />
           </div>

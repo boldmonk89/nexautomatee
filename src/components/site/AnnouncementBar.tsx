@@ -10,7 +10,7 @@ export function AnnouncementBar() {
   };
 
   return (
-    <div className="relative z-[60] bg-[#0A0A0A] py-3 px-4 text-white overflow-hidden border-b border-white/10">
+    <div className="relative z-[60] bg-[#0A0A0A] py-3 px-4 text-white overflow-hidden border-b border-white/10 animate-blink">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 text-center">
         <p className="text-[14px] font-bold tracking-wide sm:text-[16px]">
           🚀 Special Launch Offer: Get 80% OFF — Limited Time Only!
