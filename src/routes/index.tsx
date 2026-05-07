@@ -1,4 +1,3 @@
-// NexAutomate Landing Page - Vercel Deploy Trigger
 import { createFileRoute } from "@tanstack/react-router";
 import { AnnouncementBar } from "@/components/site/AnnouncementBar";
 import { Navbar } from "@/components/site/Navbar";
