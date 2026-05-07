@@ -6,63 +6,73 @@ import { CountdownTimer } from "./CountdownTimer";
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
+  const userInteractedRef = useRef(false);
+  const isVisibleRef = useRef(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // 1. Intersection Observer to Play/Pause
+    // 1. Intersection Observer to Play/Pause + control sound based on visibility
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            isVisibleRef.current = true;
+            if (userInteractedRef.current) {
+              video.muted = false;
+              video.volume = 1;
+              setIsMuted(false);
+            }
             video.play().catch(() => {
-              // Fallback for browsers that block play
-              console.log("Play blocked, waiting for interaction");
+              // Browsers may block play until user interacts
             });
           } else {
+            isVisibleRef.current = false;
+            video.muted = true;
+            video.volume = 0;
+            setIsMuted(true);
             video.pause();
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.5 }
     );
 
     observer.observe(video);
 
-    // 2. Global listener to unmute as soon as user touches/clicks/scrolls
+    // 2. After first user gesture, allow sound (only when video is visible)
     const unmute = () => {
-      if (videoRef.current) {
+      userInteractedRef.current = true;
+      if (videoRef.current && isVisibleRef.current) {
         videoRef.current.muted = false;
         videoRef.current.volume = 1;
+        videoRef.current.play().catch(() => {});
         setIsMuted(false);
       }
-      // Clean up listeners
       window.removeEventListener("click", unmute);
       window.removeEventListener("touchstart", unmute);
-      window.removeEventListener("scroll", unmute);
       window.removeEventListener("keydown", unmute);
     };
 
     window.addEventListener("click", unmute);
     window.addEventListener("touchstart", unmute);
-    window.addEventListener("scroll", unmute); // Some mobile browsers allow this
     window.addEventListener("keydown", unmute);
 
     return () => {
       observer.disconnect();
       window.removeEventListener("click", unmute);
       window.removeEventListener("touchstart", unmute);
-      window.removeEventListener("scroll", unmute);
       window.removeEventListener("keydown", unmute);
     };
   }, []);
 
   const handleManualUnmute = () => {
+    userInteractedRef.current = true;
     if (videoRef.current) {
       videoRef.current.muted = false;
       videoRef.current.volume = 1;
-      videoRef.current.play();
+      videoRef.current.play().catch(() => {});
       setIsMuted(false);
     }
   };

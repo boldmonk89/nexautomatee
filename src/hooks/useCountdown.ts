@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const INITIAL_SECONDS = 600; // 10 minutes
-const STORAGE_KEY = "countdown_target_v4";
+const INITIAL_SECONDS = 300; // 5 minutes
+const STORAGE_KEY = "countdown_target_v5";
 
 let fallbackTarget = 0;
 
