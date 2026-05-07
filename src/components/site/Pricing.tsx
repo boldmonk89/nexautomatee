@@ -4,6 +4,7 @@ import { GridBackground } from "./GridBackground";
 import { CountdownTimer } from "./CountdownTimer";
 import { RazorpayButton } from "./RazorpayButton";
 import { Gallery } from "./Gallery";
+import { useCountdown } from "@/hooks/useCountdown";
 
 const inclusions = [
   "All current n8n templates",

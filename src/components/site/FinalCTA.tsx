@@ -1,6 +1,7 @@
 import { RazorpayButton } from "./RazorpayButton";
 import { Reveal } from "./Reveal";
 import { CountdownTimer } from "./CountdownTimer";
+import { useCountdown } from "@/hooks/useCountdown";
 
 export function FinalCTA() {
   const seconds = useCountdown();
