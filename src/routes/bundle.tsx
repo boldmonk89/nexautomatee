@@ -111,13 +111,13 @@ function BundlePage() {
               <BundleCategory 
                 title="AI & AUTOMATION PACKS" 
                 icon={<Cpu className="text-purple-500" />}
-                image="/images/bundle/ChatGPT Image May 7, 2026, 11_19_33 PM.png"
+                image="/images/bundle/Screenshot 2026-05-06 221648.png"
                 items={[
                   "4000+ n8n Automation Templates",
-                  "AI Ultimate Collection 2026",
-                  "AI Lifestyle Bundle",
-                  "AI Monkey Reels Bundle",
-                  "1700+ AI Reels Bundle"
+                  "One-Click Import Workflows",
+                  "AI Tool & API Integrations",
+                  "Automated Content Systems",
+                  "Scalable Business Logic"
                 ]}
               />
               <BundleCategory 
@@ -125,34 +125,35 @@ function BundlePage() {
                 icon={<Play className="text-red-500" />}
                 image="/images/bundle/Screenshot 2026-05-06 221400.png"
                 items={[
-                  "Talking Objects Reels Bundle",
-                  "Mad Scientist Reels Bundle",
-                  "Omegle Viral Video Bundle",
-                  "Luxury Lifestyle Clips",
-                  "Viral Hook Resources"
+                  "500+ Stop Challenge Reels",
+                  "Viral Content Ready Assets",
+                  "Instant Download Access",
+                  "Used By 10,000+ Creators",
+                  "High Quality 4K Visuals"
                 ]}
               />
               <BundleCategory 
                 title="SOCIAL MEDIA RESOURCES" 
                 icon={<Smartphone className="text-pink-500" />}
-                image="/images/bundle/Screenshot 2026-05-06 221510.png"
+                image="/images/bundle/a1ae188d-38ba-406a-9997-03c6934a1bfb.png"
                 items={[
-                  "30000+ Social Media Posts",
-                  "Thumbnail Assets Pack",
-                  "Viral Reel Assets",
-                  "Instagram Content Packs",
-                  "Marketing Resources"
+                  "30,000+ High Quality Posts",
+                  "100+ Categories & Niches",
+                  "Fully Editable Text & Colors",
+                  "Ready-To-Post Templates",
+                  "Stories, Quotes & Carousels"
                 ]}
               />
               <BundleCategory 
                 title="DESIGN & CANVA PACKS" 
                 icon={<Palette className="text-blue-500" />}
-                image="/images/bundle/Screenshot 2026-05-06 221648.png"
+                image="/images/bundle/ChatGPT Image May 7, 2026, 11_19_33 PM.png"
                 items={[
-                  "10000+ Canva Templates",
-                  "Editable Branding Templates",
-                  "Viral Carousel Designs",
-                  "Business Design Assets"
+                  "10,000+ Canva Templates",
+                  "Social Media Post Bundle",
+                  "Business & Marketing Pack",
+                  "Reels & Shorts Templates",
+                  "Stories & Carousel Designs"
                 ]}
               />
               <BundleCategory 
@@ -160,22 +161,23 @@ function BundlePage() {
                 icon={<Dumbbell className="text-green-500" />}
                 image="/images/bundle/Screenshot 2026-05-06 221530.png"
                 items={[
-                  "2000+ Gym & Fitness Bundle",
-                  "Motivation Reels",
-                  "Lifestyle Content Packs",
-                  "Fitness Social Media Assets"
+                  "500+ Hollywood 4K Reels",
+                  "100% Copyright-Free Content",
+                  "Trending Digital Assets",
+                  "Professional Movie Quality",
+                  "Viral Lifestyle Clips"
                 ]}
               />
               <BundleCategory 
                 title="BUSINESS & CREATOR TOOLS" 
                 icon={<Briefcase className="text-amber-500" />}
-                image="/images/bundle/06018280-d4b4-4174-8ab6-ec66688206fb.png"
+                image="/images/bundle/47e518c3-7cf1-4375-879d-6157a8f0a181.png"
                 items={[
-                  "Ebook Mega Bundle",
-                  "Digital Marketing Assets",
-                  "AI Prompt Collections",
-                  "Content Systems",
-                  "Creator Growth Tools"
+                  "1000+ Ebooks Collection",
+                  "Mindset & Financial Freedom",
+                  "Digital Marketing Strategies",
+                  "Power of Habits & Investing",
+                  "Productivity Secrets Vault"
                 ]}
               />
             </div>
