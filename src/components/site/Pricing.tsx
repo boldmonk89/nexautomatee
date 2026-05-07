@@ -1,7 +1,8 @@
-import { Check, ArrowRight, Clock } from "lucide-react";
+import { Check, Clock } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { GridBackground } from "./GridBackground";
 import { CountdownTimer } from "./CountdownTimer";
+import { RazorpayButton } from "./RazorpayButton";
 
 const inclusions = [
   "All current n8n templates",
@@ -69,9 +70,10 @@ export function Pricing() {
               ))}
             </ul>
 
-            <a href="#pricing" className="btn-primary mt-7 w-full justify-center">
-              Start Automating Now — ₹299 <ArrowRight size={16} />
-            </a>
+            <RazorpayButton
+              className="btn-primary mt-7 w-full justify-center"
+              label="Start Automating Now — ₹299"
+            />
             <p className="mt-3 text-center text-xs text-muted-foreground">
               Secure payment. Instant access. No subscription.
             </p>
