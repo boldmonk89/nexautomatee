@@ -1,6 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const INITIAL_SECONDS = 600; // 10 minutes
+const STORAGE_KEY = "countdown_target_v4";
+
+let fallbackTarget = 0;
 
 declare global {
   interface Window {
@@ -12,32 +15,45 @@ export function useCountdown() {
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
-    // 1. Determine Target Time
-    let target = localStorage.getItem("countdown_target_v3");
-    const now = Math.floor(Date.now() / 1000);
-    
-    let targetNum = target ? parseInt(target, 10) : 0;
+    const getOrCreateTarget = () => {
+      const now = Math.floor(Date.now() / 1000);
+      let targetNum = window.__NEX_COUNTDOWN_TARGET || fallbackTarget;
 
-    // Initialize if missing or invalid
-    if (!targetNum || isNaN(targetNum)) {
-      targetNum = now + INITIAL_SECONDS;
-      localStorage.setItem("countdown_target_v3", targetNum.toString());
-    }
+      try {
+        const storedTarget = window.localStorage.getItem(STORAGE_KEY);
+        const parsedTarget = storedTarget ? Number.parseInt(storedTarget, 10) : 0;
+        if (Number.isFinite(parsedTarget) && parsedTarget > now) {
+          targetNum = parsedTarget;
+        }
+      } catch {
+        // Some hosted previews block storage; keep the timer running in memory.
+      }
+
+      if (!targetNum || targetNum <= now) {
+        targetNum = now + INITIAL_SECONDS;
+      }
+
+      window.__NEX_COUNTDOWN_TARGET = targetNum;
+      fallbackTarget = targetNum;
+
+      try {
+        window.localStorage.setItem(STORAGE_KEY, String(targetNum));
+      } catch {
+        // Storage is optional for the countdown.
+      }
+
+      return targetNum;
+    };
+
+    const targetNum = getOrCreateTarget();
 
     const tick = () => {
       const currentNow = Math.floor(Date.now() / 1000);
       const remaining = Math.max(0, targetNum - currentNow);
-      
-      // If reached zero, we can either stop or reset. 
-      // User requested it NOT to loop automatically, so we stop at 0.
       setSeconds(remaining);
-      
-      if (remaining === 0) {
-        clearInterval(interval);
-      }
     };
 
-    tick(); // Initial call
+    tick();
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
   }, []);
