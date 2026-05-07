@@ -12,32 +12,18 @@ export function useCountdown() {
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
-    // 1. Initialize Global Target if not exists
-    if (!window.__NEX_COUNTDOWN_TARGET) {
-      const stored = localStorage.getItem("countdown_target");
-      const now = Math.floor(Date.now() / 1000);
-      
-      if (stored && parseInt(stored, 10) > now) {
-        window.__NEX_COUNTDOWN_TARGET = parseInt(stored, 10);
-      } else {
-        window.__NEX_COUNTDOWN_TARGET = now + INITIAL_SECONDS;
-        localStorage.setItem("countdown_target", window.__NEX_COUNTDOWN_TARGET.toString());
-      }
-    }
-
     const update = () => {
       const now = Math.floor(Date.now() / 1000);
-      let target = window.__NEX_COUNTDOWN_TARGET || (now + INITIAL_SECONDS);
+      let target = localStorage.getItem("countdown_target_v2");
       
-      let diff = target - now;
+      let targetNum = target ? parseInt(target, 10) : 0;
 
-      if (diff <= 0) {
-        target = now + INITIAL_SECONDS;
-        window.__NEX_COUNTDOWN_TARGET = target;
-        localStorage.setItem("countdown_target", target.toString());
-        diff = INITIAL_SECONDS;
+      if (isNaN(targetNum) || targetNum <= now) {
+        targetNum = now + INITIAL_SECONDS;
+        localStorage.setItem("countdown_target_v2", targetNum.toString());
       }
 
+      const diff = Math.max(0, targetNum - now);
       setSeconds(diff);
     };
 

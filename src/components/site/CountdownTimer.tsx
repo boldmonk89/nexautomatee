@@ -10,11 +10,14 @@ export function CountdownTimer({ showUrgency = true }: { showUrgency?: boolean }
     <div className="flex flex-col items-center gap-6">
       {showUrgency && (
         <div className="flex flex-col items-center animate-pulse">
-          <span className="text-[12px] font-black uppercase tracking-[0.2em] text-[#FF3B30]">
+          <span className="text-[14px] font-black uppercase tracking-[0.3em] text-[#FF3B30]">
             Offer Ends In:
           </span>
-          <div className="mt-1 text-[14px] font-bold text-foreground">
-            Today Only <span className="text-[#FF3B30]">₹299</span> — Regular <span className="line-through opacity-50">₹1,999</span>
+          <div className="mt-2 text-[20px] md:text-[24px] font-black text-foreground text-center leading-tight">
+            TODAY ONLY <span className="text-[#FF3B30]">₹299</span>
+            <br className="md:hidden" />
+            <span className="mx-2 hidden md:inline">—</span>
+            REGULAR <span className="line-through opacity-30">₹1,999</span>
           </div>
         </div>
       )}
