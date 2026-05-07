@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -84,7 +85,7 @@
   --ring: oklch(0.55 0.22 264);
   --surface: oklch(0.985 0.002 260);
 
-  --font-sans: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Geist", system-ui, sans-serif;
+  --font-sans: "SF Pro Display Bold", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Geist", system-ui, sans-serif;
   --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
   --shadow-card-hover: 0 12px 40px rgba(0,0,0,0.10);
   --shadow-cta: 0 4px 20px rgba(0,0,0,0.15);
@@ -150,6 +151,12 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.011em;
+  }
+
+  /* Exclude Digital Products Section and Bundle Page from font change */
+  #bundle, #bundle *, #digital-bundle-page, #digital-bundle-page * {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Geist", system-ui, sans-serif !important;
   }
 
   h1, h2, h3, h4 {

@@ -34,7 +34,7 @@ function BundlePage() {
   const currentPrice = isExpired ? regularPrice : offerPrice;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div id="digital-bundle-page" className="min-h-screen bg-background">
       <AnnouncementBar />
       <Navbar />
       <main>
