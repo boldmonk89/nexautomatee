@@ -121,7 +121,7 @@ export function Hero() {
             <video 
               ref={videoRef}
               autoPlay 
-              muted={isMuted}
+              muted
               loop 
               playsInline
               className="absolute inset-0 h-full w-full object-cover"

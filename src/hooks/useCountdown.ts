@@ -18,7 +18,7 @@ export function useCountdown() {
       
       let targetNum = target ? parseInt(target, 10) : 0;
 
-      if (isNaN(targetNum) || targetNum <= now) {
+      if (isNaN(targetNum) || targetNum === 0) {
         targetNum = now + INITIAL_SECONDS;
         localStorage.setItem("countdown_target_v2", targetNum.toString());
       }
