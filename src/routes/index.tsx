@@ -1,26 +1,52 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/site/Navbar";
+import { Hero } from "@/components/site/Hero";
+import { Stats } from "@/components/site/Stats";
+import { Features } from "@/components/site/Features";
+import { Templates } from "@/components/site/Templates";
+import { OtherProducts } from "@/components/site/OtherProducts";
+import { Pricing } from "@/components/site/Pricing";
+import { Testimonials } from "@/components/site/Testimonials";
+import { FAQ } from "@/components/site/FAQ";
+import { FinalCTA } from "@/components/site/FinalCTA";
+import { Footer } from "@/components/site/Footer";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "NexAutomate — Premium n8n Automation Templates" },
+      {
+        name: "description",
+        content:
+          "Ready-to-deploy n8n automation templates for creators and small businesses. Lead gen, AI workflows, content automation — lifetime access from ₹299.",
+      },
+      { property: "og:title", content: "NexAutomate — Automate Everything. Scale Faster." },
+      {
+        property: "og:description",
+        content:
+          "Premium n8n automation templates. Plug-and-play workflows that earn while you sleep.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main>
+        <Hero />
+        <Stats />
+        <Features />
+        <Templates />
+        <OtherProducts />
+        <Pricing />
+        <Testimonials />
+        <FAQ />
+        <FinalCTA />
+      </main>
+      <Footer />
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
