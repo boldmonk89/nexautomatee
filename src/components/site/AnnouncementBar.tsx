@@ -3,12 +3,18 @@ import { Clock } from "lucide-react";
 
 const INITIAL_SECONDS = 600; // 10 minutes
 
+function getRemainingSeconds() {
+  const elapsed = Math.floor(Date.now() / 1000) % INITIAL_SECONDS;
+  return INITIAL_SECONDS - elapsed;
+}
+
 export function AnnouncementBar() {
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
+    setSeconds(getRemainingSeconds());
     const timer = setInterval(() => {
-      setSeconds((prev) => (prev > 0 ? prev - 1 : INITIAL_SECONDS));
+      setSeconds(getRemainingSeconds());
     }, 1000);
     return () => clearInterval(timer);
   }, []);
@@ -30,7 +36,7 @@ export function AnnouncementBar() {
         <span className="hidden sm:inline-block h-3 w-[1px] bg-white/20" />
         
         <div className="flex items-center gap-2">
-          <span className="text-white/80">Price Increases In:</span>
+          <span className="text-white/80">₹299 Today — ₹1,999 In:</span>
           <span className="font-mono text-[14px] text-[#FF3B30] drop-shadow-[0_0_8px_rgba(255,59,48,0.5)]">
             {formatTime(seconds)}
           </span>

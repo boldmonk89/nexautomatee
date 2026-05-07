@@ -34,8 +34,8 @@ export function Pricing() {
             Get Full Access For Just ₹299 Today
           </h2>
           <p className="mt-4 text-muted-foreground md:text-lg">
-            This price won't last. Once the timer hits zero, the price goes up. Lock in your
-            lifetime access now.
+            This price won't last. Once the timer hits zero, this n8n template bundle moves to
+            ₹1,999. Lock in your lifetime access now.
           </p>
         </Reveal>
 
@@ -49,8 +49,11 @@ export function Pricing() {
             style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.10)" }}
           >
             <div className="text-center">
-              <div className="text-xl text-muted-foreground line-through">₹999</div>
+              <div className="text-xl text-muted-foreground line-through">₹1,999</div>
               <div className="mt-1 text-5xl font-extrabold tracking-tight md:text-6xl">₹299</div>
+              <div className="mt-2 text-sm font-semibold" style={{ color: "#DC2626" }}>
+                Today ₹299 — Regular price ₹1,999
+              </div>
               <p className="mt-2 text-sm text-muted-foreground">
                 One-time payment. Lifetime access. Instant delivery.
               </p>

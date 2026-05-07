@@ -2,19 +2,25 @@ import { useEffect, useState } from "react";
 
 const INITIAL = 600;
 
+function getRemainingSeconds() {
+  const elapsed = Math.floor(Date.now() / 1000) % INITIAL;
+  return INITIAL - elapsed;
+}
+
 export function CountdownTimer() {
   const [seconds, setSeconds] = useState(INITIAL);
   const [reset, setReset] = useState(false);
 
   useEffect(() => {
+    setSeconds(getRemainingSeconds());
     const id = setInterval(() => {
-      setSeconds((s) => {
-        if (s <= 1) {
+      setSeconds((previous) => {
+        const next = getRemainingSeconds();
+        if (next > previous) {
           setReset(true);
           window.setTimeout(() => setReset(false), 2400);
-          return INITIAL;
         }
-        return s - 1;
+        return next;
       });
     }, 1000);
     return () => clearInterval(id);

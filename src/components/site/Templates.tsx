@@ -3,12 +3,12 @@ import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 
 // ADD NEW TEMPLATES HERE
 const templates = [
-  { title: "Instagram Content Automation", desc: "Auto-generate, schedule, and cross-post Instagram content from a single Notion or Google Sheet source.", badge: "BESTSELLER", price: 299, oldPrice: 999 },
-  { title: "Lead Gen + CRM Sync", desc: "Capture leads from forms, ads, and DMs. Auto-enrich, score, and push directly into your CRM.", badge: "NEW", price: 299, oldPrice: 999 },
-  { title: "AI Email Responder", desc: "Reply to client emails 24/7 with on-brand AI responses powered by GPT-4 and your knowledge base.", badge: "AI-POWERED", price: 299, oldPrice: 999 },
-  { title: "YouTube Script Generator", desc: "Turn a single topic into research, outline, hook, and full script — ready to record in minutes.", badge: "AI-POWERED", price: 299, oldPrice: 999 },
-  { title: "Client Onboarding System", desc: "Automate contracts, invoices, welcome emails, and project setup the moment a client signs up.", badge: "BESTSELLER", price: 299, oldPrice: 999 },
-  { title: "WhatsApp Follow-Up Bot", desc: "Auto follow-up with leads on WhatsApp using personalized sequences and AI-powered replies.", badge: "NEW", price: 299, oldPrice: 999 },
+  { title: "Instagram Content Automation", desc: "Auto-generate, schedule, and cross-post Instagram content from a single Notion or Google Sheet source.", badge: "BESTSELLER", price: 299, oldPrice: 1999 },
+  { title: "Lead Gen + CRM Sync", desc: "Capture leads from forms, ads, and DMs. Auto-enrich, score, and push directly into your CRM.", badge: "NEW", price: 299, oldPrice: 1999 },
+  { title: "AI Email Responder", desc: "Reply to client emails 24/7 with on-brand AI responses powered by GPT-4 and your knowledge base.", badge: "AI-POWERED", price: 299, oldPrice: 1999 },
+  { title: "YouTube Script Generator", desc: "Turn a single topic into research, outline, hook, and full script — ready to record in minutes.", badge: "AI-POWERED", price: 299, oldPrice: 1999 },
+  { title: "Client Onboarding System", desc: "Automate contracts, invoices, welcome emails, and project setup the moment a client signs up.", badge: "BESTSELLER", price: 299, oldPrice: 1999 },
+  { title: "WhatsApp Follow-Up Bot", desc: "Auto follow-up with leads on WhatsApp using personalized sequences and AI-powered replies.", badge: "NEW", price: 299, oldPrice: 1999 },
 ];
 
 const badgeColor: Record<string, string> = {

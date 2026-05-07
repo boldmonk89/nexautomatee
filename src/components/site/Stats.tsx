@@ -1,5 +1,3 @@
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
 import { Reveal } from "./Reveal";
 
 const stats = [
@@ -8,39 +6,6 @@ const stats = [
   { value: "340+", label: "Automation Workflows Deployed" },
   { value: "10,000+", label: "Creators Using Our Templates" },
 ];
-
-function parseNumeric(v: string) {
-  const m = v.match(/[\d.]+/);
-  if (!m) return { num: 0, prefix: "", suffix: v };
-  const num = parseFloat(m[0]);
-  const idx = v.indexOf(m[0]);
-  return { num, prefix: v.slice(0, idx), suffix: v.slice(idx + m[0].length) };
-}
-
-function CountUp({ value }: { value: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.5 });
-  const [n, setN] = useState(0);
-  const { num, prefix, suffix } = parseNumeric(value);
-
-  useEffect(() => {
-    if (!inView) return;
-    const start = performance.now();
-    const dur = 1400;
-    let raf = 0;
-    const tick = (now: number) => {
-      const p = Math.min(1, (now - start) / dur);
-      const e = 1 - Math.pow(1 - p, 3);
-      setN(num * e);
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, num]);
-
-  const display = num % 1 === 0 ? Math.round(n).toLocaleString() : n.toFixed(1);
-  return <span ref={ref}>{prefix}{display}{suffix}</span>;
-}
 
 export function Stats() {
   return (
@@ -56,7 +21,7 @@ export function Stats() {
             <Reveal key={s.label} delay={i * 0.08}>
               <div className="card-surface p-7">
                 <div className="text-3xl font-extrabold tracking-tight md:text-4xl">
-                  <CountUp value={s.value} />
+                  {s.value}
                 </div>
                 <div className="mt-2 text-sm text-muted-foreground">{s.label}</div>
               </div>
