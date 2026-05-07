@@ -102,8 +102,8 @@ export function Hero() {
             No coding, no complexity, just pure automation systems built for business.
           </p>
           <div className="mt-10 flex flex-col items-center gap-8">
-            <a href="#cta" className="btn-primary">
-              Get Access <ArrowRight size={16} />
+            <a href="#cta" className="btn-primary !px-12 !py-6 !text-xl md:!text-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
+              Get Access <ArrowRight size={22} />
             </a>
             
             <div className="scale-90 opacity-90">

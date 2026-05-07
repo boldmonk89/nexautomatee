@@ -31,6 +31,24 @@ const templates = [
     desc: "A complex multi-step automation for advanced business logic.",
     image: "/images/n8n_automation_workflow_1_1778177285043.png",
     tag: "Advanced"
+  },
+  {
+    title: "Sketchy Workflow Blueprint",
+    desc: "Hand-drawn n8n system logic for business process mapping.",
+    image: "/images/n8n_blueprint.png",
+    tag: "Blueprint"
+  },
+  {
+    title: "Live Automation Dashboard",
+    desc: "Real-time monitoring and execution of your complex workflows.",
+    image: "/images/n8n_diagram.png",
+    tag: "Working"
+  },
+  {
+    title: "Automation Sketch",
+    desc: "Minimalist pencil-style sketch of automated data flow systems.",
+    image: "/images/n8n_sketch.png",
+    tag: "Artistic"
   }
 ];
 

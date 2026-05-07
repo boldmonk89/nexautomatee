@@ -40,11 +40,11 @@ function Index() {
         <Hero />
         <Features />
         <TemplateShowcase />
-        <DigitalProductsSection />
         <Templates />
         <HowItWorks />
         <FAQ />
         <FinalCTA />
+        <DigitalProductsSection />
       </main>
       <Footer />
     </div>
