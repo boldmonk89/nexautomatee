@@ -111,6 +111,7 @@ function BundlePage() {
               <BundleCategory 
                 title="AI & AUTOMATION PACKS" 
                 icon={<Cpu className="text-purple-500" />}
+                image="/images/bundle/ChatGPT Image May 7, 2026, 11_19_33 PM.png"
                 items={[
                   "4000+ n8n Automation Templates",
                   "AI Ultimate Collection 2026",
@@ -122,6 +123,7 @@ function BundlePage() {
               <BundleCategory 
                 title="VIRAL CONTENT PACKS" 
                 icon={<Play className="text-red-500" />}
+                image="/images/bundle/Screenshot 2026-05-06 221400.png"
                 items={[
                   "Talking Objects Reels Bundle",
                   "Mad Scientist Reels Bundle",
@@ -133,6 +135,7 @@ function BundlePage() {
               <BundleCategory 
                 title="SOCIAL MEDIA RESOURCES" 
                 icon={<Smartphone className="text-pink-500" />}
+                image="/images/bundle/Screenshot 2026-05-06 221510.png"
                 items={[
                   "30000+ Social Media Posts",
                   "Thumbnail Assets Pack",
@@ -144,6 +147,7 @@ function BundlePage() {
               <BundleCategory 
                 title="DESIGN & CANVA PACKS" 
                 icon={<Palette className="text-blue-500" />}
+                image="/images/bundle/Screenshot 2026-05-06 221648.png"
                 items={[
                   "10000+ Canva Templates",
                   "Editable Branding Templates",
@@ -154,6 +158,7 @@ function BundlePage() {
               <BundleCategory 
                 title="FITNESS & LIFESTYLE" 
                 icon={<Dumbbell className="text-green-500" />}
+                image="/images/bundle/Screenshot 2026-05-06 221530.png"
                 items={[
                   "2000+ Gym & Fitness Bundle",
                   "Motivation Reels",
@@ -164,6 +169,7 @@ function BundlePage() {
               <BundleCategory 
                 title="BUSINESS & CREATOR TOOLS" 
                 icon={<Briefcase className="text-amber-500" />}
+                image="/images/bundle/06018280-d4b4-4174-8ab6-ec66688206fb.png"
                 items={[
                   "Ebook Mega Bundle",
                   "Digital Marketing Assets",
@@ -174,6 +180,55 @@ function BundlePage() {
               />
             </div>
           </div>
+        </section>
+
+        {/* MEGA BUNDLE SHOWCASE */}
+        <section className="py-24 bg-secondary/10 overflow-hidden">
+           <div className="mx-auto max-w-7xl px-6">
+              <Reveal className="text-center mb-16">
+                 <h2 className="text-3xl font-black md:text-5xl tracking-tight">Mega Bundle Preview</h2>
+                 <p className="mt-4 text-muted-foreground">Take a look inside the massive collection of 50,000+ assets.</p>
+              </Reveal>
+              
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                 {[
+                   "0b526b42-2e41-46a0-a5a2-9d249da23e60.png",
+                   "215a42a1-7f6a-4473-a9c9-81550605fc3f.png",
+                   "2e454312-3389-496c-8b67-5e60a173aa94.png",
+                   "47e518c3-7cf1-4375-879d-6157a8f0a181.png",
+                   "5a075efc-8610-4ab0-9309-9b4ccc3f6a16.png",
+                   "6ade390f-3e98-42ea-89b0-e228780a3f67.png",
+                   "71fad94b-3b0b-4b51-8060-7f85faaf7518.png",
+                   "8935dd2d-80c9-4da2-b549-999f075ba131.png",
+                   "947f904a-f1da-4ab0-8283-ec2bb29c23d4.png",
+                   "9d2198f1-edaa-42e2-9f58-2bdbe4940021.png",
+                   "a1ae188d-38ba-406a-9997-03c6934a1bfb.png",
+                   "a9183802-4f16-430d-a80b-77bdb07a9181.png",
+                   "b874e7fe-2bdd-4327-a53d-37dab1314755.png",
+                   "c8813ebd-30e3-4413-88f8-11c9adb6af25.png",
+                   "dffc8bf5-cfa2-4072-afbb-28c998c202e3.png",
+                   "e1e59ce3-8767-48d4-9bf1-6a13439fa247.png",
+                   "ea273c3e-5e1e-40af-a627-9095074458da.png",
+                   "Screenshot 2026-05-06 221416.png",
+                   "Screenshot 2026-05-06 221432.png",
+                   "Screenshot 2026-05-06 221521.png",
+                   "Screenshot 2026-05-06 221539.png",
+                   "06018280-d4b4-4174-8ab6-ec66688206fb.png",
+                   "Screenshot 2026-05-06 221400.png",
+                   "Screenshot 2026-05-06 221510.png"
+                 ].map((img, idx) => (
+                   <Reveal key={idx} delay={idx * 0.05}>
+                      <div className="aspect-[3/4] rounded-xl overflow-hidden border bg-background group cursor-pointer">
+                         <img 
+                           src={`/images/bundle/${img}`} 
+                           alt="Bundle Item" 
+                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                         />
+                      </div>
+                   </Reveal>
+                 ))}
+              </div>
+           </div>
         </section>
 
         {/* FREE BONUSES */}
@@ -374,21 +429,34 @@ function StatItem({ value, label }: { value: string; label: string }) {
   );
 }
 
-function BundleCategory({ title, icon, items }: { title: string; icon: React.ReactNode; items: string[] }) {
+function BundleCategory({ title, icon, items, image }: { title: string; icon: React.ReactNode; items: string[]; image?: string }) {
   return (
-    <div className="card-surface p-8 group hover:border-blue-500/50 transition-all">
-      <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary border group-hover:bg-blue-500/10 transition-colors">
-        {icon}
+    <div className="card-surface p-0 group hover:border-blue-500/50 transition-all overflow-hidden flex flex-col">
+      {image && (
+        <div className="relative aspect-video overflow-hidden border-b">
+           <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+           <div className="absolute bottom-4 left-6 flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-md border border-white/10 text-white">
+              {icon}
+           </div>
+        </div>
+      )}
+      <div className="p-8">
+        {!image && (
+          <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary border group-hover:bg-blue-500/10 transition-colors">
+            {icon}
+          </div>
+        )}
+        <h3 className="text-xl font-black mb-6 tracking-tight">{title}</h3>
+        <ul className="space-y-3">
+          {items.map((item, i) => (
+            <li key={i} className="flex items-center gap-3 text-[15px] text-muted-foreground">
+              <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
-      <h3 className="text-xl font-black mb-6 tracking-tight">{title}</h3>
-      <ul className="space-y-3">
-        {items.map((item, i) => (
-          <li key={i} className="flex items-center gap-3 text-[15px] text-muted-foreground">
-            <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-            {item}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
