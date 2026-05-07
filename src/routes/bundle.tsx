@@ -260,7 +260,7 @@ function BundlePage() {
                       <div className="absolute inset-0 bg-black/20" />
                       <div className="absolute bottom-6 left-6 right-6 p-4 bg-black/60 backdrop-blur-md rounded-xl border border-white/10">
                          <h3 className="text-xl font-black">Mega Bonus Pack</h3>
-                         <p className="text-sm text-gray-300">Worth ₹4,999 — Included in your bundle.</p>
+                         <p className="text-sm text-gray-300">Worth ₹49,997 — Included in your bundle.</p>
                       </div>
                    </div>
                 </div>
