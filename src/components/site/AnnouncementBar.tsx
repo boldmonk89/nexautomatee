@@ -7,13 +7,15 @@ export function AnnouncementBar() {
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
-    // Start exactly at 10:00 (INITIAL_SECONDS) whenever the component mounts
-    setSeconds(INITIAL_SECONDS);
+    const savedTime = localStorage.getItem("countdown_seconds");
+    const initial = savedTime ? parseInt(savedTime, 10) : INITIAL_SECONDS;
+    setSeconds(initial);
 
     const timer = setInterval(() => {
       setSeconds((prev) => {
-        if (prev <= 1) return INITIAL_SECONDS;
-        return prev - 1;
+        const next = prev <= 1 ? INITIAL_SECONDS : prev - 1;
+        localStorage.setItem("countdown_seconds", next.toString());
+        return next;
       });
     }, 1000);
 
