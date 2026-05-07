@@ -1,6 +1,16 @@
 import { useCountdown } from "@/hooks/useCountdown";
 
-export function CountdownTimer({ showUrgency = true, isDark = false }: { showUrgency?: boolean; isDark?: boolean }) {
+export function CountdownTimer({ 
+  showUrgency = true, 
+  isDark = false,
+  offerPrice = "₹299",
+  regularPrice = "₹1,999"
+}: { 
+  showUrgency?: boolean; 
+  isDark?: boolean;
+  offerPrice?: string;
+  regularPrice?: string;
+}) {
   const seconds = useCountdown();
 
   const mm = Math.floor(seconds / 60).toString().padStart(2, "0");
@@ -14,10 +24,10 @@ export function CountdownTimer({ showUrgency = true, isDark = false }: { showUrg
             Offer Ends In:
           </span>
           <div className={`mt-2 text-[20px] md:text-[24px] font-black ${isDark ? "text-white" : "text-[#0A0A0A]"} text-center leading-tight`}>
-            TODAY ONLY <span className="text-[#FF3B30]">₹299</span>
+            TODAY ONLY <span className="text-[#FF3B30]">{offerPrice}</span>
             <br className="md:hidden" />
             <span className="mx-2 hidden md:inline">—</span>
-            REGULAR <span className="line-through opacity-30">₹1,999</span>
+            REGULAR <span className="line-through opacity-30">{regularPrice}</span>
           </div>
         </div>
       )}
